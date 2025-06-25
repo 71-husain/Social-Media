@@ -1,0 +1,89 @@
+"use client";
+
+import { ThumbsUp, ThumbsDown, MessageCircle } from "lucide-react";
+
+type VideoCardProps = {
+  videoKey: string;
+  videoTitle: string;
+  description: string;
+  thumbnail: string;
+  videoUrl: string;
+  likes: number;
+  dislikes: number;
+  commentsCount: number;
+  onLike: () => void;
+  onDislike: () => void;
+  onComment: () => void;
+  refCallback?: (el: HTMLVideoElement | null) => void;
+  onPlay?: () => void;
+};
+
+function VideoCard({
+  videoKey,
+  videoTitle,
+  description,
+  thumbnail,
+  videoUrl,
+  likes,
+  dislikes,
+  commentsCount,
+  onLike,
+  onDislike,
+  onComment,
+  refCallback,
+  onPlay
+}: VideoCardProps) {
+  return (
+    <div key={videoKey} className=" relative snap-start h-screen w-full bg-black">
+      <div className="absolute top-5 left-4 z-10 text-white">
+          <h3 className="text-lg font-semibold pt-2">{videoTitle}</h3>
+          <p className="text-sm text-gray-300">{description}</p>
+      </div>
+      <video
+        ref={refCallback}
+        onPlay={onPlay}
+        src={videoUrl}
+        className="w-full h-[calc(100vh-70px)] object-cover overflow-hidden p-0 m-0"
+        controls={true}
+        loop
+        playsInline
+        preload="metadata"
+        poster={thumbnail}
+      />
+
+      <div className="absolute right-5 bottom-36 flex flex-col items-center gap-6 text-white text-lg z-10">
+        <button
+          onClick={onLike}
+          className="flex flex-col items-center drop-shadow hover:scale-110 transition-transform"
+        >
+           <div className="bg-white/20 backdrop-blur-md p-3 rounded-full">
+               <ThumbsUp size={30} className="text-white" />
+           </div>
+           <span className="text-white text-sm font-medium">{likes}</span>
+        </button>
+ 
+        <button
+          onClick={onDislike}
+          className="lex flex-col items-center drop-shadow hover:scale-110 transition-transform"
+        >
+           <div className="bg-white/20 backdrop-blur-md p-3 rounded-full">
+              <ThumbsDown size={30}  className="text-white"/>
+           </div>
+           <span className="text-white text-sm font-medium">{dislikes}</span>
+        </button>
+
+        <button
+          onClick={onComment}
+          className="flex flex-col items-center drop-shadow hover:scale-110 transition-transform"
+        >
+          <div className="bg-white/20 backdrop-blur-md p-3 rounded-full">
+          <MessageCircle size={30} className="text-white"/>
+           </div>
+           <span className="text-white text-sm font-medium">{commentsCount}</span>
+        </button>
+      </div>
+    </div>
+  );
+}
+
+export default VideoCard;
