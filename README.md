@@ -68,18 +68,12 @@ npm run dev
 
 📱 Responsive mobile-friendly layout improvements
 
-📁 Folder Structure
-
-/app
-  /components       // Reusable UI like VideoCard, PostCard, CommentCard
-  /api              // API calls to server
-  /(auth)           // Auth-related pages
-  /(user)           // User pages like Upload, Profile
-/models             // Mongoose schemas
-/lib                // Database and auth helpers
 🙌 Author
+
 Husain Ansari
+
 GitHub: @71-husain
+
 Email: ansarihusain9510@gmail.com
 
 📄 License
