@@ -48,7 +48,7 @@ export async function POST(req : NextRequest){
         post.comments.unshift(newComment);
         await post.save();
 
-        await post.populate("comments.user","username")
+        await post.populate("comments.user","username userProfileUrl")
 
         const populatedComment = post.comments[0];
 
@@ -64,7 +64,7 @@ export async function POST(req : NextRequest){
     } catch (error) {
         return NextResponse.json(
             {
-                error : "Error in Comments on post"
+                error : "Error in Comments on post" 
             },
             {
                 status : 403

@@ -9,6 +9,8 @@ import VideoCard from "./components/VideoCard";
 import { useSession } from "next-auth/react";
 import { Types } from "mongoose";
 import CommentCard from "./components/CommentCard";
+import { IUserProfile } from "./profile/page";
+import toast from "react-hot-toast";
 
 function page() {
   const [feed, setFeed] = useState<
@@ -21,14 +23,12 @@ function page() {
   const [activeItem, setActiveItem] = useState<IVideo | IPost | null>(null);
   const [activeType, setActiveType] = useState<"video" | "post">("post");
 
-  interface IUserPreview {
-    _id: string;
-    username: string;
-  }
+
 
   const { data: session } = useSession();
   const userId = session?.user.id;
   const objectUserId = new Types.ObjectId(userId);
+
 
   useEffect(() => {
     const fetchingDatas = async () => {
@@ -53,8 +53,8 @@ function page() {
         );
 
         setFeed(combinedfeed);
-      } catch (error) {
-        console.error("Error while Fetching data in homepage", error);
+      } catch (error: any) {
+        toast.error(error.message || "Error while fetching data on homepage");
       }
     };
 
@@ -73,6 +73,7 @@ function page() {
             likes={item.likes.length}
             dislikes={item.dislikes.length}
             commentsCount={item.comments.length}
+            userProfileUrl={(item.user as any).userProfileUrl}
             onLike={async () => {
               const postId = item._id;
               const updated = feed.map((p) => {
@@ -99,8 +100,8 @@ function page() {
 
               try {
                 await apiClient.likePost(String(item._id), "like");
-              } catch (error) {
-                console.error("error in liking the post");
+              } catch (error: any) {
+                toast.error(error.message || "Error in liking post");
               }
             }}
             onDislike={async () => {
@@ -128,8 +129,8 @@ function page() {
               setFeed(updated);
               try {
                 await apiClient.likePost(String(item._id), "dislike");
-              } catch (error) {
-                console.error("error in dislikig the post");
+              } catch (error: any) {
+                toast.error(error.message || "Error in disliking post");
               }
             }}
             onComment={() => {
@@ -149,6 +150,8 @@ function page() {
             likes={item.likes.length}
             dislikes={item.dislikes.length}
             commentsCount={item.comments.length}
+            username={(item.user as any).username}
+            userProfileUrl={(item.user as any).userProfileUrl}
             onLike={async () => {
               const videoId = item._id;
               const updated = feed.map((v) => {
@@ -175,8 +178,8 @@ function page() {
 
               try {
                 await apiClient.likeVideo(String(item._id), "like");
-              } catch (error) {
-                console.error("error in liking the video");
+              } catch (error: any) {
+                toast.error(error.message || "Error in liking video");
               }
             }}
             onDislike={async () => {
@@ -204,8 +207,8 @@ function page() {
               setFeed(updated);
               try {
                 await apiClient.likeVideo(String(item._id), "dislike");
-              } catch (error) {
-                console.error("error in dislikig the post");
+              } catch (error: any) {
+                toast.error(error.message || "Error in disliking video");
               }
             }}
             onComment={() => {
@@ -217,7 +220,7 @@ function page() {
               if (el) videoRefs.current[index] = el;
             }}
             onPlay={() => {
-                console.log("Playing video at index:", index);
+              console.log("Playing video at index:", index);
 
               videoRefs.current.forEach((vid, i) => {
                 if (i !== index && vid && !vid.paused) {

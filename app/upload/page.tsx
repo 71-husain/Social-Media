@@ -5,6 +5,7 @@ import { apiClient } from "../api/api-client"; // Import the centralized API
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Types } from "mongoose";
+import toast from "react-hot-toast";
 
 export default function UploadPage() {
   const [uploadProgress, setUploadProgress] = useState<number | null>(null);
@@ -81,8 +82,8 @@ export default function UploadPage() {
 
       //redirect to home page
       router.push("/");
-    } catch (error) {
-      console.error("Error saving video:", error);
+    } catch (error:any) {
+        toast.error(error.message || "error saving videos");
     }
   };
 
@@ -107,8 +108,8 @@ export default function UploadPage() {
       setUploadProgress(null);
 
       router.push("/");
-    } catch (error) {
-      console.error(" Error deleting from ImageKit:", error);
+    } catch (error:any) {
+        toast.error(error.message || "Error Deleting from Imagekit");
     }
   };
 

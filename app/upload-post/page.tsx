@@ -5,6 +5,7 @@ import { apiClient } from "../api/api-client"; // Import the centralized API
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Types } from "mongoose";
+import toast from "react-hot-toast";
 
 export default function UploadPost() {
   const [uploadProgress, setUploadProgress] = useState<number | null>(null);
@@ -62,8 +63,8 @@ export default function UploadPost() {
 
       //pushing router to home page
       router.push("/");
-    } catch (error) {
-      console.error("Error while Creating a Post");
+    } catch (error:any) {
+        toast.error(error.message || "Error While creating post");
     }
   };
 
@@ -88,8 +89,8 @@ export default function UploadPost() {
       setUploadProgress(null);
 
       router.push("/");
-    } catch (error) {
-      console.error(" Error deleting from ImageKit:", error);
+    } catch (error:any) {
+        toast.error(error.message || "Error Deleting from imagekit");
     }
   };
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { ThumbsUp, ThumbsDown, MessageCircle } from "lucide-react";
+import { ThumbsUp, ThumbsDown, MessageCircle, MoreVertical } from "lucide-react";
 
 type VideoCardProps = {
   videoKey: string;
@@ -11,6 +11,8 @@ type VideoCardProps = {
   likes: number;
   dislikes: number;
   commentsCount: number;
+  username : string;
+  userProfileUrl : string;
   onLike: () => void;
   onDislike: () => void;
   onComment: () => void;
@@ -27,6 +29,8 @@ function VideoCard({
   likes,
   dislikes,
   commentsCount,
+  username ,
+  userProfileUrl,
   onLike,
   onDislike,
   onComment,
@@ -35,15 +39,30 @@ function VideoCard({
 }: VideoCardProps) {
   return (
     <div key={videoKey} className=" relative snap-start h-screen w-full bg-black">
-      <div className="absolute top-5 left-4 z-10 text-white">
-          <h3 className="text-lg font-semibold pt-2">{videoTitle}</h3>
-          <p className="text-sm text-gray-300">{description}</p>
+      
+      <div className="absolute top-5 left-4 z-10 text-white flex gap-2 items-center">
+          <div className="h-10 w-10 bg-zinc-300 rounded-full overflow-hidden">
+           <a href={`/profile/${username}`}>
+            <img
+              src={
+                userProfileUrl ||
+                "https://static.vecteezy.com/system/resources/previews/032/176/191/non_2x/business-avatar-profile-black-icon-man-of-user-symbol-in-trendy-flat-style-isolated-on-male-profile-people-diverse-face-for-social-network-or-web-vector.jpg"
+              }
+              alt="profile"
+              className="rounded-full object-cover"
+            />
+            </a>
+          </div>
+          <div>
+            <h3 className="text-lg font-semibold pt-2">{videoTitle}</h3>
+            <p className="text-sm text-gray-300">{description}</p>
+          </div>
       </div>
       <video
         ref={refCallback}
         onPlay={onPlay}
         src={videoUrl}
-        className="w-full h-[calc(100vh-70px)] object-cover overflow-hidden p-0 m-0"
+        className="w-full h-[calc(100vh-44px)] object-cover overflow-hidden p-0 m-0"
         controls={true}
         loop
         playsInline

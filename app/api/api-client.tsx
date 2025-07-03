@@ -1,6 +1,7 @@
 import { IPost } from "@/models/Post";
 import { IVideo } from "@/models/Video";
 import { ObjectId } from "mongoose";
+import { IUserProfile } from "../profile/page";
 
 type FetchOptions = {
   method?: "GET" | "POST" | "PUT" | "DELETE";
@@ -9,7 +10,7 @@ type FetchOptions = {
 };
 
 export type VideoFormData = Omit<IVideo, "_id">;
-export type PostFormData = Omit<IPost,"_id">;
+export type PostFormData = Omit<IPost, "_id">;
 
 class ApiClient {
   private async fetch<T>(
@@ -29,11 +30,18 @@ class ApiClient {
       body: body ? JSON.stringify(body) : undefined,
     });
 
+    const contentType = response.headers.get("content-type");
+    const data = contentType?.includes("application/json")
+      ? await response.json()
+      : await response.text();
+
     if (!response.ok) {
-      throw new Error(await response.text());
+      const message =
+        typeof data === "string" ? data : data?.error || "Something went wrong";
+      throw new Error(message);
     }
 
-    return response.json();
+    return data as T;
   }
 
   async getVideos() {
@@ -58,7 +66,7 @@ class ApiClient {
     });
   }
 
-  async getPosts(){
+  async getPosts() {
     return this.fetch<IPost[]>("/posts")
   }
 
@@ -73,21 +81,43 @@ class ApiClient {
     return this.fetch("/videos/comment", {
       method: "POST",
       body: { videoId, text },
-    }); 
-  }
-
-  async likePost(postId :string,action: string){
-    return this.fetch("/posts/like",{
-      method :"POST",
-      body :{postId,action}
     });
   }
 
-  async commentOnPost(postId : string , text : string){
-    return this.fetch("/posts/comment",{
-      method : "POST",
-      body : {postId,text}
+  async likePost(postId: string, action: string) {
+    return this.fetch("/posts/like", {
+      method: "POST",
+      body: { postId, action }
+    });
+  }
+
+  async followUser(targetUserId: string) {
+    return this.fetch("/user/actions/follow", {
+      method: "POST",
+      body: { targetUserId }
     })
+  }
+
+  async commentOnPost(postId: string, text: string) {
+    return this.fetch("/posts/comment", {
+      method: "POST",
+      body: { postId, text }
+    })
+  }
+
+  async getUserProfileData(id: string) {
+    return this.fetch(`/user/${id}`)
+  }
+
+  async updateUserProfile(id: string, data: IUserProfile) {
+    return this.fetch(`/user/${id}`, {
+      method: "PUT",
+      body: { data }
+    })
+  }
+
+  async getUserNameData(username: string) {
+    return this.fetch(`/user/profile/${username}`)
   }
 }
 

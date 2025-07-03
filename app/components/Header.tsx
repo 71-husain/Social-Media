@@ -1,40 +1,81 @@
-"use client"
-import { signOut, useSession } from 'next-auth/react'
-import Link from 'next/link'
-import React from 'react'
+"use client";
+import { signOut, useSession } from "next-auth/react";
+import Link from "next/link";
+import React from "react";
+import { RiVideoUploadLine } from "react-icons/ri";
+import { LuImagePlus } from "react-icons/lu";
+import { CiHome } from "react-icons/ci";
+import { CgProfile } from "react-icons/cg";
+import { FiLogIn, FiLogOut, FiUserPlus } from "react-icons/fi";
+import { usePathname } from "next/navigation";
+import { SiYoutubeshorts } from "react-icons/si";
 
 
 function Header() {
-     const {data : session} = useSession()
+  const { data: session } = useSession();
+  const pathname = usePathname();
 
-     const handleSignOut = async ()=>{
-        try {
-            await signOut();
-        } catch (error) {
-             
-        }
-     }
+  const isActive = (route: string) => pathname === route;
+
   return (
-    <div className='py-4 m-0 flex justify-between bg-orange-400 text-black sticky top-0 z-[999]'>
+    <div className="fixed bottom-0 w-full bg-white border-t-2 border-black shadow-md z-[999] flex justify-around items-center py-2 rounded-t-md text-center">
+      {/* Home */}
+      <Link href="/" className={isActive("/") ? "text-blue-600" : "text-black"}>
+        <CiHome size={28} />
+      </Link>
 
-        <div>
-          <Link  href="/reels" className='px-4 text-2xl'>ReelsPro</Link>
-        </div>
-           {session?(
-            <div className='flex items-center mx-2'>
-                <Link href="/upload" className='mx-5'>Upload Video</Link>
-                <Link href="/upload-post" className='mx-5'>Upload Post</Link>
-                <button onClick={handleSignOut} className='mx-5'>SignOut</button>
-            </div>
-            
-           ):(
-             <div className='flex items-center mx-2'>
-                <Link href='/login' className='mx-5'>Login</Link>
-                <Link href='/register' className='mx-5'>Register</Link>
-             </div>
-           )}
+      <Link href="/reels" className={isActive("/reels") ? "text-blue-600" : "text-black"}>
+        < SiYoutubeshorts size={28} />
+      </Link>
+
+      {session ? (
+        <>
+          {/* Upload Video */}
+          <Link
+            href="/upload"
+            className={isActive("/upload") ? "text-blue-600" : "text-black"}
+          >
+            <RiVideoUploadLine size={28} />
+          </Link>
+
+          {/* Upload Post */}
+          <Link
+            href="/upload-post"
+            className={isActive("/upload-post") ? "text-blue-600" : "text-black"}
+          >
+            <LuImagePlus size={28} />
+          </Link>
+
+        </>
+      ) : (
+        <>
+          {/* Login */}
+          <Link
+            href="/login"
+            className={isActive("/login") ? "text-blue-600" : "text-black"}
+          >
+            <FiLogIn size={28} />
+          </Link>
+
+          {/* Register */}
+          <Link
+            href="/register"
+            className={isActive("/register") ? "text-blue-600" : "text-black"}
+          >
+            <FiUserPlus size={28} />
+          </Link>
+        </>
+      )}
+
+      {/* Profile */}
+      <Link
+        href="/profile"
+        className={isActive("/profile") ? "text-blue-600" : "text-black"}
+      >
+        <CgProfile size={28} />
+      </Link>
     </div>
-  )
+  );
 }
 
-export default Header
+export default Header;

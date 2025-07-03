@@ -6,6 +6,7 @@ import VideoCard from "../components/VideoCard";
 import { useSession } from "next-auth/react";
 import { ObjectId, Types } from "mongoose";
 import CommentCard from "../components/CommentCard";
+import toast from "react-hot-toast";
 
 export default function HomePage() {
   const videoRefs = useRef<HTMLVideoElement[]>([]);
@@ -21,8 +22,8 @@ export default function HomePage() {
         const videoData = await apiClient.getVideos();
         setVideos(videoData);
         console.log(videoData);
-      } catch (error) {
-        console.error("Error fetching videos:", error);
+      } catch (error:any) {
+        toast.error(error.message || "Error Fetching Videos");
       } finally {
         setLoading(false);
       }
@@ -75,6 +76,8 @@ export default function HomePage() {
           likes={video.likes.length}
           dislikes={video.dislikes.length}
           commentsCount={video.comments.length}
+          username={(video.user as any).username}
+          userProfileUrl={(video.user as any).userProfileUrl}
           onLike={async () => {
             const videoId = video._id;
 

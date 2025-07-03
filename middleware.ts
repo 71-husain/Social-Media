@@ -2,24 +2,31 @@ import withAuth from "next-auth/middleware"
 import { NextResponse } from "next/server"
 
 export default withAuth(
-    function middleware(){
+    function middleware() {
         return NextResponse.next();
     },
     {
-        callbacks : {
-            authorized : ({token,req})=>{
-               
+        callbacks: {
+            authorized: ({ token, req }) => {
+
                 const pathname = req.nextUrl.pathname;
+                const publicRoutes = [
+                    "/",
+                    "/login",
+                    "/register",
+                    "/reels",
+                ];
+
 
                 //allow access to public and auth related routes 
-                if(pathname.startsWith("/api/auth") ||
+                if (pathname.startsWith("/api/auth") ||
                     pathname === "/login" ||
                     pathname === "/register"
-                ){
+                ) {
                     return true;
                 }
 
-                if(pathname === "/" || pathname.startsWith("/api/video")){
+                if (publicRoutes.includes(pathname) || pathname.startsWith("/api/video") || pathname.startsWith("/reels")) {
                     return true;
                 }
 
@@ -31,5 +38,5 @@ export default withAuth(
 
 
 export const config = {
-    matcher: ["/((?!_next|favicon.ico|public).*)"], 
+    matcher: ["/((?!_next|favicon.ico|public).*)"],
 }

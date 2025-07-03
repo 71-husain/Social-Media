@@ -39,7 +39,7 @@ function CommentCard({
     if (!commentText.trim()) return;
 
     try {
-      let savedComment : IComment;
+      let savedComment: IComment;
 
       if (!item._id) {
         console.error("Item has no ID");
@@ -50,14 +50,14 @@ function CommentCard({
         const res = await apiClient.commentOnVideo(
           String(item._id),
           commentText
-        ) as { comment: IComment }; 
+        ) as { comment: IComment };
         savedComment = res.comment;
-      } 
-      if(type ==="post") {
+      }
+      if (type === "post") {
         const res = await apiClient.commentOnPost(
           String(item._id),
           commentText
-        ) as { comment: IComment } ;
+        ) as { comment: IComment };
         savedComment = res.comment;
       }
 
@@ -86,9 +86,8 @@ function CommentCard({
 
   return (
     <div
-      className={`fixed bottom-0 w-full h-[60vh] z-50 overflow-y-auto bg-white redius-xl rounded-t-2xl ${
-        showComment ? "translate-y-0" : "translate-y-full"
-      } transition-all duration-300`}
+      className={`fixed bottom-12 w-full h-[60vh] z-50 overflow-y-auto bg-white redius-xl rounded-t-2xl ${showComment ? "translate-y-0" : "translate-y-full"
+        } transition-all duration-300`}
     >
       <div className="flex z-10 sticky top-0 bg-white p-2 border-b-[1px] border-black justify-between m-2 pl-2">
         <h2 className="text-2xl">Comments</h2>
@@ -102,11 +101,24 @@ function CommentCard({
 
       <div className="flex-1 overflow-y-auto h-[45vh] px-4 pb-20">
         {item.comments.map((comment, index) => (
-          <div key={String(comment._id) || index} className="mt-2 ml-5">
-            <h3 className="text-lg">
-              @{(comment.user as any)?.username || "unknown"}
-            </h3>
-            <p className="text-xl">{comment.text}</p>
+
+          <div key={String(comment._id) || index} className="mt-2 ml-5 flex gap-2">
+            <div className="h-8 w-8 mt-2 bg-zinc-300 rounded-full overflow-hidden shrink-0">
+              <img
+                src={
+                  (comment.user as any)?.userProfileUrl ||
+                  "https://static.vecteezy.com/system/resources/previews/032/176/191/non_2x/business-avatar-profile-black-icon-man-of-user-symbol-in-trendy-flat-style-isolated-on-male-profile-people-diverse-face-for-social-network-or-web-vector.jpg"
+                }
+                alt="profile"
+                className="rounded-full object-cover"
+              />
+            </div>
+            <div>
+              <h3 className="text-lg">
+                @{(comment.user as any)?.username || "unknown"}
+              </h3>
+              <p className="text-xl">{comment.text}</p>
+            </div>
           </div>
         ))}
       </div>

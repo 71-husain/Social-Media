@@ -2,6 +2,7 @@
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
 import User from '@/models/User';
+import toast from 'react-hot-toast';
 
 
 function Register() {
@@ -40,8 +41,8 @@ function Register() {
                 setError(data.error || "Registration failed");
             }
 
-        } catch (error) {
-            console.error("Error in Registration",error)
+        } catch (error:any) {
+        toast.error(error.message || "Error in Registration");
         } finally {
             setLoading(false);
           }

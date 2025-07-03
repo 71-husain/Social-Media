@@ -36,7 +36,7 @@ export async function POST(req : NextRequest){
             error : "video not found"
         },
         {status : 400}
-       )
+       ) 
     }
 
     if(action ==='like'){

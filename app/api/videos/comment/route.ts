@@ -13,7 +13,7 @@ export async function POST(req : NextRequest){
         const session = await getServerSession(authOptions);
         if(!session?.user.id){
             return NextResponse.json(
-                { error : "Unauthorized" },
+                { error : "Unauthorized" }, 
                 { status : 401 }
             )
         }
@@ -54,7 +54,7 @@ export async function POST(req : NextRequest){
         video.comments.unshift(newComment);  //add at top
         await video.save(); 
 
-        await video.populate("comments.user", "username");
+        await video.populate("comments.user", "username userProfileUrl");
 
         const populatedComment = video.comments[0]; // because you unshifted
 

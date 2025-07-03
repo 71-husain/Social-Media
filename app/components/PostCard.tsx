@@ -9,6 +9,7 @@ type postCardProps = {
   likes: number;
   dislikes: number;
   commentsCount: number;
+  userProfileUrl : string;
   username: string;
   onLike: () => void;
   onDislike: () => void;
@@ -23,6 +24,7 @@ function PostCard({
   dislikes,
   commentsCount,
   username,
+  userProfileUrl,
   onLike,
   onDislike,
   onComment,
@@ -32,7 +34,18 @@ function PostCard({
       {/* Top: User Info */}
       <div className="flex items-center justify-between px-4 py-3">
         <div className="flex items-center gap-2">
-          <div className="h-10 w-10 bg-zinc-300 rounded-full" />
+          <div className="h-10 w-10 bg-zinc-300 rounded-full">
+            <a href={`/profile/${username}`}>
+            <img
+              src={
+                userProfileUrl ||
+                "https://static.vecteezy.com/system/resources/previews/032/176/191/non_2x/business-avatar-profile-black-icon-man-of-user-symbol-in-trendy-flat-style-isolated-on-male-profile-people-diverse-face-for-social-network-or-web-vector.jpg"
+              }
+              alt="profile"
+              className="rounded-full object-cover"
+            />
+            </a>
+          </div>
           <span className="font-semibold text-gray-800 dark:text-white">
             @{username}
           </span>

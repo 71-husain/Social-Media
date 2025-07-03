@@ -10,7 +10,7 @@ export async function GET() {
   try {
     await connectToDatabase();
 
-    const videos = await Video.find({}).populate("comments.user", "username");
+    const videos = await Video.find({}).populate("comments.user", "username userProfileUrl").populate("user","username userProfileUrl");
     if (!videos || videos.length === 0) {
       return NextResponse.json([], { status: 200 });
     }
@@ -19,7 +19,7 @@ export async function GET() {
   } catch (error) {
     return NextResponse.json({ error: "error fetching data" }, { status: 500 });
   }
-}
+} 
 
 export async function POST(req: NextRequest) {
   try {

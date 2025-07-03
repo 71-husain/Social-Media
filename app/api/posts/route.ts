@@ -11,7 +11,7 @@ export async function GET() {
 
     const posts = await Post.find()
       .sort({ createdAt: -1 })
-      .populate("user", "username");
+      .populate("user", "username userProfileUrl").populate("comments.user","username userProfileUrl");
 
     if (!posts || posts.length == 0) {
       return NextResponse.json([], { status: 200 });
