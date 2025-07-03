@@ -28,13 +28,13 @@ Deployment: Vercel (Optional for live hosting)
 📸 Screenshots
 home page
 
-![image](https://github.com/user-attachments/assets/e55b753c-46d9-4f63-9576-55e93e5807e0)
+<img width="164" alt="image" src="https://github.com/user-attachments/assets/e99c65f6-5a63-46a7-ac25-7188095043d4" />
 
 reeks section 
-![image](https://github.com/user-attachments/assets/fa63cfd9-76db-4206-a42e-eeca00c1c8ae)
+<img width="167" alt="image" src="https://github.com/user-attachments/assets/28b08c57-9b4b-4fed-91c1-09d1cbab54cf" />
 
 comment section 
-![image](https://github.com/user-attachments/assets/7daabc97-e867-45db-af8b-0d4fe58090af)
+<img width="163" alt="image" src="https://github.com/user-attachments/assets/a3ae1ca2-0d7b-4a9c-8ff4-914178eb3836" />
 
 
 
