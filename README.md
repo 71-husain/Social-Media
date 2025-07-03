@@ -55,19 +55,23 @@ touch .env.local
 # Start the dev server
 npm run dev
 
-🌱 Upcoming Features (v2 Roadmap)
-👤 User profile page with uploaded posts and reels
+🌱 Added Features in version 2
 
-🔔 Notification system (likes, comments)
+- 👤 Follow / Unfollow Users  
+  Users can now follow or unfollow other users from their profile pages.
 
-🔐 Google Authentication via NextAuth
+- 📄 Public & Own Profile Pages  
+  - **Own Profile** shows personal posts, reels, and user info  
+  - **Public Profiles** are viewable by others with follow functionality
 
-🧠 Explore / Suggested content feed
+- 🔐 Google Authentication  
+  Users can sign in with their Google accounts via NextAuth integration.
 
-📄 Reusable toast error handler (like “Login to like”)
 
-📱 Responsive mobile-friendly layout improvements
+- 🌈 Visual Toast Notifications  
+  Success and error messages are now shown via React Hot Toast.
 
+  
 🙌 Author
 
 Husain Ansari
