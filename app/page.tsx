@@ -22,7 +22,7 @@ function page() {
   const [showComment, setShowComment] = useState(false);
   const [activeItem, setActiveItem] = useState<IVideo | IPost | null>(null);
   const [activeType, setActiveType] = useState<"video" | "post">("post");
-
+ 
 
 
   const { data: session } = useSession();
@@ -74,6 +74,8 @@ function page() {
             dislikes={item.dislikes.length}
             commentsCount={item.comments.length}
             userProfileUrl={(item.user as any).userProfileUrl}
+            isliked={item.likes.includes(userId)}
+            isDisliked={item.dislikes.includes(userId)}
             onLike={async () => {
               const postId = item._id;
               const updated = feed.map((p) => {
@@ -152,6 +154,8 @@ function page() {
             commentsCount={item.comments.length}
             username={(item.user as any).username}
             userProfileUrl={(item.user as any).userProfileUrl}
+            isliked={item.likes.includes(userId)}
+            isDisliked={item.dislikes.includes(userId)}
             onLike={async () => {
               const videoId = item._id;
               const updated = feed.map((v) => {

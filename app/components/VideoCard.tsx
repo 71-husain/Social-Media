@@ -11,8 +11,10 @@ type VideoCardProps = {
   likes: number;
   dislikes: number;
   commentsCount: number;
-  username : string;
-  userProfileUrl : string;
+  username: string;
+  userProfileUrl: string;
+  isliked: boolean;
+  isDisliked: boolean;
   onLike: () => void;
   onDislike: () => void;
   onComment: () => void;
@@ -29,8 +31,10 @@ function VideoCard({
   likes,
   dislikes,
   commentsCount,
-  username ,
+  username,
   userProfileUrl,
+  isliked,
+  isDisliked,
   onLike,
   onDislike,
   onComment,
@@ -39,10 +43,10 @@ function VideoCard({
 }: VideoCardProps) {
   return (
     <div key={videoKey} className=" relative snap-start h-screen w-full bg-black">
-      
+
       <div className="absolute top-5 left-4 z-10 text-white flex gap-2 items-center">
-          <div className="h-10 w-10 bg-zinc-300 rounded-full overflow-hidden">
-           <a href={`/profile/${username}`}>
+        <div className="h-10 w-10 bg-zinc-300 rounded-full overflow-hidden">
+          <a href={`/profile/${username}`}>
             <img
               src={
                 userProfileUrl ||
@@ -51,12 +55,12 @@ function VideoCard({
               alt="profile"
               className="rounded-full object-cover"
             />
-            </a>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold pt-2">{videoTitle}</h3>
-            <p className="text-sm text-gray-300">{description}</p>
-          </div>
+          </a>
+        </div>
+        <div>
+          <h3 className="text-lg font-semibold pt-2">{videoTitle}</h3>
+          <p className="text-sm text-gray-300">{description}</p>
+        </div>
       </div>
       <video
         ref={refCallback}
@@ -75,30 +79,38 @@ function VideoCard({
           onClick={onLike}
           className="flex flex-col items-center drop-shadow hover:scale-110 transition-transform"
         >
-           <div className="bg-white/20 backdrop-blur-md p-3 rounded-full">
-               <ThumbsUp size={30} className="text-white" />
-           </div>
-           <span className="text-white text-sm font-medium">{likes}</span>
-        </button>
- 
-        <button
-          onClick={onDislike}
-          className="lex flex-col items-center drop-shadow hover:scale-110 transition-transform"
-        >
-           <div className="bg-white/20 backdrop-blur-md p-3 rounded-full">
-              <ThumbsDown size={30}  className="text-white"/>
-           </div>
-           <span className="text-white text-sm font-medium">{dislikes}</span>
+          <div
+            className={`bg-white/20 backdrop-blur-md p-3 rounded-full ${isliked ? "ring-2 ring-pink-500" : ""
+              }`}
+          >
+            <ThumbsUp size={30} className={isliked ? "text-pink-500" : "text-white"} />
+          </div>
+          <span className="text-white text-sm font-medium">{likes}</span>
         </button>
 
+        <button
+          onClick={onDislike}
+          className="flex flex-col items-center drop-shadow hover:scale-110 transition-transform"
+        >
+          <div
+            className={`bg-white/20 backdrop-blur-md p-3 rounded-full ${isDisliked ? "ring-2 ring-blue-500" : ""
+              }`}
+          >
+            <ThumbsDown
+              size={30}
+              className={isDisliked ? "text-blue-500" : "text-white"}
+            />
+          </div>
+          <span className="text-white text-sm font-medium">{dislikes}</span>
+        </button>
         <button
           onClick={onComment}
           className="flex flex-col items-center drop-shadow hover:scale-110 transition-transform"
         >
           <div className="bg-white/20 backdrop-blur-md p-3 rounded-full">
-          <MessageCircle size={30} className="text-white"/>
-           </div>
-           <span className="text-white text-sm font-medium">{commentsCount}</span>
+            <MessageCircle size={30} className="text-white" />
+          </div>
+          <span className="text-white text-sm font-medium">{commentsCount}</span>
         </button>
       </div>
     </div>

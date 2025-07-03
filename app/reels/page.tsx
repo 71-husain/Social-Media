@@ -78,6 +78,8 @@ export default function HomePage() {
           commentsCount={video.comments.length}
           username={(video.user as any).username}
           userProfileUrl={(video.user as any).userProfileUrl}
+          isliked={video.likes.includes(userId)}
+          isDisliked={video.dislikes.includes(userId)}
           onLike={async () => {
             const videoId = video._id;
 
