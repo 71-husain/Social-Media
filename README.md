@@ -88,6 +88,8 @@ Now visit http://localhost:3000 in your browser.
 
 - 👤 Follow / Unfollow Users  
   Users can now follow or unfollow other users from their profile pages.
+
+
   <img width="169" alt="image" src="https://github.com/user-attachments/assets/6786e74d-4bb8-492e-80d4-4cd6290439bc" />
 
 
@@ -97,7 +99,7 @@ Now visit http://localhost:3000 in your browser.
     
   - <img width="169" alt="image" src="https://github.com/user-attachments/assets/82c97358-2a0e-430e-a5ac-5bdc403c2bae" />
   
-  <img width="176" alt="image" src="https://github.com/user-attachments/assets/4292a432-873c-442c-8326-5f87b16d83f0" />
+  - <img width="176" alt="image" src="https://github.com/user-attachments/assets/4292a432-873c-442c-8326-5f87b16d83f0" />
 
 
 
