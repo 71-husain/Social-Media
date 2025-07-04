@@ -43,14 +43,13 @@ comment section
 
 
 
-🧪 Running Locally
+# 🧪 Running Locally
 Follow the steps below to run the project on your local machine:
 
-Follow the steps below to run the project on your local machine:
 
 1. Clone the repository
 
-<pre>git clone https://github.com/your-username/social-media-app.git </pre>
+<pre>git clone https://github.com/71-husain/social-media-app.git </pre>
 
 <pre>cd social-media-app</pre>
 2. Install dependencies
@@ -95,13 +94,16 @@ Now visit http://localhost:3000 in your browser.
 - 📄 Public & Own Profile Pages  
   - **Own Profile** shows personal posts, reels, and user info  
   - **Public Profiles** are viewable by others with follow functionality
+    
   - <img width="169" alt="image" src="https://github.com/user-attachments/assets/82c97358-2a0e-430e-a5ac-5bdc403c2bae" />
+  
   <img width="176" alt="image" src="https://github.com/user-attachments/assets/4292a432-873c-442c-8326-5f87b16d83f0" />
 
 
 
 # - 🔐 Google Authentication  
   Users can sign in with their Google accounts via NextAuth integration.
+  
   <img width="166" alt="image" src="https://github.com/user-attachments/assets/596f0718-de1e-408c-b73e-30224cab65d9" />
 
 
