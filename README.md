@@ -46,26 +46,41 @@ comment section
 🧪 Running Locally
 Follow the steps below to run the project on your local machine:
 
+Follow the steps below to run the project on your local machine:
+
 1. Clone the repository
 
-git clone https://github.com/your-username/social-media-app.git
-cd social-media-app
+<pre>git clone https://github.com/your-username/social-media-app.git </pre>
+
+<pre>cd social-media-app</pre>
 2. Install dependencies
-bash
-Copy
-Edit
-npm install
+
+<pre>npm install</pre>
+
 3. Set up environment variables
 Create a .env.local file in the root directory:
 
-bash
-Copy
-Edit
-touch .env.local
+
+<pre>touch .env.local</pre>
 Then add the following variables inside .env.local:
 
-<pre> ``` git clone https://github.com/your-username/social-media-app.git cd social-media-app ```</pre>
 
+<pre>
+MONGODB_URI=your_mongodb_connection_string
+NEXTAUTH_SECRET=your_nextauth_secret
+NEXTAUTH_URL=http://localhost:3000
+IMAGEKIT_PUBLIC_KEY=your_imagekit_public_key
+IMAGEKIT_PRIVATE_KEY=your_imagekit_private_key
+IMAGEKIT_URL_ENDPOINT=your_imagekit_url_endpoint
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+</pre>
+
+💡 Replace the values with your actual credentials.
+
+4. Run the development server
+
+<pre>npm run dev</pre>
 
 Now visit http://localhost:3000 in your browser.
 
