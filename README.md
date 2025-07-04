@@ -64,7 +64,9 @@ Edit
 touch .env.local
 Then add the following variables inside .env.local:
 
-<pre> ```bash git clone https://github.com/your-username/social-media-app.git cd social-media-app ``` ```bash npm install ``` ```bash touch .env.local ``` ```env MONGODB_URI=your_mongodb_connection_string NEXTAUTH_SECRET=your_nextauth_secret NEXTAUTH_URL=http://localhost:3000 IMAGEKIT_PUBLIC_KEY=your_imagekit_public_key IMAGEKIT_PRIVATE_KEY=your_imagekit_private_key IMAGEKIT_URL_ENDPOINT=your_imagekit_url_endpoint GOOGLE_CLIENT_ID=your_google_client_id GOOGLE_CLIENT_SECRET=your_google_client_secret ``` ```bash npm run dev ``` </pre>
+<pre> ``` git clone https://github.com/your-username/social-media-app.git cd social-media-app ```</pre>
+
+
 Now visit http://localhost:3000 in your browser.
 
 
