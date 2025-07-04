@@ -1,7 +1,7 @@
- Social Media App — Version 1.0
+# Social Media App — Version 1.0
 A modern full-stack social media web application built with Next.js 14, allowing users to post videos (Reels-style) and images (Posts), interact with content using likes, dislikes, and comments, and view a mixed feed like Instagram or Facebook.
 
-🚀 Features
+# 🚀 Features
 🎞️ Reels Section – Videos that autoplay one at a time and scroll like Instagram reels
 
 🖼️ Post Section – Static image posts with captions and user info
@@ -14,7 +14,7 @@ A modern full-stack social media web application built with Next.js 14, allowing
 
 🔐 Authentication system (Email-based, Google login coming soon)
 
-🛠️ Tech Stack
+# 🛠️ Tech Stack
 Frontend: Next.js (App Router), TypeScript, TailwindCSS, Lucide Icons
 
 Backend: Node.js, Next.js API Routes, MongoDB (via Mongoose)
@@ -25,7 +25,7 @@ Cloud Storage: ImageKit for video/image uploads and CDN support
 
 Deployment: Vercel (Optional for live hosting)
 
-📸 Screenshots
+# 📸 Screenshots
 home page
 
 
@@ -44,21 +44,50 @@ comment section
 
 
 🧪 Running Locally
-# Clone the repository
+Follow the steps below to run the project on your local machine:
+
+1. Clone the repository
+bash
+Copy
+Edit
 git clone https://github.com/your-username/social-media-app.git
 cd social-media-app
-
-# Install dependencies
+2. Install dependencies
+bash
+Copy
+Edit
 npm install
+3. Set up environment variables
+Create a .env.local file in the root directory:
 
-# Add your environment variables
+bash
+Copy
+Edit
 touch .env.local
-# Add MongoDB URI, ImageKit keys, and NextAuth secrets
+Then add the following variables inside .env.local:
 
-# Start the dev server
+env
+Copy
+Edit
+MONGODB_URI=your_mongodb_connection_string
+NEXTAUTH_SECRET=your_nextauth_secret
+NEXTAUTH_URL=http://localhost:3000
+IMAGEKIT_PUBLIC_KEY=your_imagekit_public_key
+IMAGEKIT_PRIVATE_KEY=your_imagekit_private_key
+IMAGEKIT_URL_ENDPOINT=your_imagekit_url_endpoint
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+💡 Replace the values with your actual credentials.
+
+4. Run the development server
+bash
+Copy
+Edit
 npm run dev
+Now visit http://localhost:3000 in your browser.
 
-🌱 Added Features in version 2
+
+# 🌱 Added Features in version 2
 
 - 👤 Follow / Unfollow Users  
   Users can now follow or unfollow other users from their profile pages.
@@ -73,7 +102,7 @@ npm run dev
 
 
 
-- 🔐 Google Authentication  
+# - 🔐 Google Authentication  
   Users can sign in with their Google accounts via NextAuth integration.
   <img width="166" alt="image" src="https://github.com/user-attachments/assets/596f0718-de1e-408c-b73e-30224cab65d9" />
 
@@ -85,7 +114,7 @@ npm run dev
   
 🙌 Author
 
-Husain Ansari
+# Husain Ansari
 
 GitHub: @71-husain
 
