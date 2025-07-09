@@ -113,6 +113,13 @@ Now visit http://localhost:3000 in your browser.
 - 🌈 Visual Toast Notifications  
   Success and error messages are now shown via React Hot Toast.
 
+### 🔥 Version 2 Updates:
+- 🔁 Responsive Design for Mobile + Desktop
+- 🔐 Auth Guard (redirect to login)
+- ❤️ Like/Dislike Reels
+- 💬 Comment System (with popup)
+- 🎬 Clean Reels Feed Layout
+
   
 🙌 Author
 
