@@ -104,7 +104,7 @@ export default function ProfilePage() {
   if (!userData) return <p className="p-4">Loading...</p>;
   return (
     <div className="h-screen max-w-md mx-auto">
-      {/* ✅ If editing: Show full-screen edit form */}
+      {/* If editing: Show full-screen edit form */}
       {isEditing ? (
         <div className="h-full p-4 flex flex-col justify-center space-y-4">
           <h2 className="text-xl font-bold">Edit Profile</h2>
@@ -150,10 +150,10 @@ export default function ProfilePage() {
           </div>
         </div>
       ) : (
-        // ✅ Default: Show Profile Page
+       // Show Profile Page
         <div className="space-y-6 h-full overflow-y-auto">
           {/* Top Half - Profile Info */}
-          <div className="flex flex-col items-center p-4 h-[40%] pt-10 border-b-2  border-black">
+          <div className="flex flex-col items-center p-4 h-[40%] pt-10 border-b-2  border-black lg:flex justify-center ">
             <div className="w-full px-5 flex justify-between mb-2 ">
               <Link href="/">
                 <CiHome size={28} />

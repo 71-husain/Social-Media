@@ -87,7 +87,7 @@ function CommentCard({
   return (
     <div
       className={`fixed bottom-12 w-full h-[60vh] z-50 overflow-y-auto bg-white redius-xl rounded-t-2xl ${showComment ? "translate-y-0" : "translate-y-full"
-        } transition-all duration-300`}
+        } transition-all duration-300 lg:max-w-[420px] lg:left-1/2 lg:-translate-x-1/2 lg:rounded-xl lg:border lg:border-gray-300 no-scrollbar`}
     >
       <div className="flex z-10 sticky top-0 bg-white p-2 border-b-[1px] border-black justify-between m-2 pl-2">
         <h2 className="text-2xl">Comments</h2>

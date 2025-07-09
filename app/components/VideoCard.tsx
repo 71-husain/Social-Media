@@ -42,9 +42,9 @@ function VideoCard({
   onPlay
 }: VideoCardProps) {
   return (
-    <div key={videoKey} className=" relative snap-start h-screen w-full bg-black">
+    <div key={videoKey} className=" relative snap-start h-screen w-full  bg-black">
 
-      <div className="absolute top-5 left-4 z-10 text-white flex gap-2 items-center">
+      <div className="absolute top-5 left-4 z-10 text-white flex gap-2 max-w-[430px] items-center">
         <div className="h-10 w-10 bg-zinc-300 rounded-full overflow-hidden">
           <a href={`/profile/${username}`}>
             <img
@@ -66,7 +66,7 @@ function VideoCard({
         ref={refCallback}
         onPlay={onPlay}
         src={videoUrl}
-        className="w-full h-[calc(100vh-44px)] object-cover overflow-hidden p-0 m-0"
+        className="w-full h-[calc(100vh-44px)] lg:h-screen object-cover overflow-hidden p-0 m-0"
         controls={true}
         loop
         playsInline

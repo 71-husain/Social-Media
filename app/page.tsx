@@ -11,6 +11,7 @@ import { Types } from "mongoose";
 import CommentCard from "./components/CommentCard";
 import { IUserProfile } from "./profile/page";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 function page() {
   const [feed, setFeed] = useState<
@@ -18,7 +19,7 @@ function page() {
   >([]);
 
   const videoRefs = useRef<HTMLVideoElement[]>([]);
-
+  const router = useRouter();
   const [showComment, setShowComment] = useState(false);
   const [activeItem, setActiveItem] = useState<IVideo | IPost | null>(null);
   const [activeType, setActiveType] = useState<"video" | "post">("post");
@@ -31,6 +32,9 @@ function page() {
 
 
   useEffect(() => {
+    if(!session){
+        router.push("/login")
+    }
     const fetchingDatas = async () => {
       try {
         const fetchedVideos = await apiClient.getVideos();
@@ -61,7 +65,7 @@ function page() {
     fetchingDatas();
   }, []);
   return (
-    <div>
+    <div className="lg:ml-80 lg:max-w-[430px]">
       {feed.map((item, index) =>
         item.type == "post" ? (
           <PostCard

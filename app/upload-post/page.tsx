@@ -95,7 +95,7 @@ export default function UploadPost() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-zinc-900 to-zinc-800 text-white py-10 px-4 flex justify-center items-start">
+    <div className="min-h-screen bg-gradient-to-b from-zinc-900 to-zinc-800 text-white py-10 px-4 flex justify-center items-start lg:max-w-[430px] lg:ml-80">
       <div className="w-full max-w-lg bg-zinc-950 p-6 rounded-2xl shadow-xl">
         <h2 className="text-3xl font-bold mb-6 text-center">Upload a Post</h2>
 

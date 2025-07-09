@@ -7,6 +7,7 @@ import { useSession } from "next-auth/react";
 import { ObjectId, Types } from "mongoose";
 import CommentCard from "../components/CommentCard";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 export default function HomePage() {
   const videoRefs = useRef<HTMLVideoElement[]>([]);
@@ -15,6 +16,7 @@ export default function HomePage() {
   const [showComment, setShowComment] = useState(false);
   const [activeVideoId, setActiveVideoId] = useState<ObjectId>();
   const [activeVideo, setActiveVideo] = useState<IVideo | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchVideos = async () => {
@@ -22,7 +24,7 @@ export default function HomePage() {
         const videoData = await apiClient.getVideos();
         setVideos(videoData);
         console.log(videoData);
-      } catch (error:any) {
+      } catch (error: any) {
         toast.error(error.message || "Error Fetching Videos");
       } finally {
         setLoading(false);
@@ -64,7 +66,7 @@ export default function HomePage() {
   const userId = session?.user?.id;
 
   return (
-    <div className=" relative h-screen snap-y snap-mandatory overflow-y-scroll no-scrollbar">
+    <div className=" relative h-screen snap-y snap-mandatory overflow-y-scroll no-scrollbar lg:ml-80 lg:max-w-[430px]">
       {videos.map((video, index) => (
         <VideoCard
           key={String(video._id)}
@@ -91,7 +93,9 @@ export default function HomePage() {
               const updatedlikes = alreadyliked
                 ? v.likes.filter((id) => id.toString() !== userId)
                 : [...v.likes, userId];
-              const updateddislikes = v.dislikes.filter((id) => id.toString()!==userId);
+              const updateddislikes = v.dislikes.filter(
+                (id) => id.toString() !== userId
+              );
 
               return {
                 ...v,
@@ -103,6 +107,10 @@ export default function HomePage() {
             setVideos(updated as any);
 
             try {
+              if (!session) {
+                router.push("/login");
+                return;
+              }
               await apiClient.likeVideo(String(video._id), "like");
             } catch (error) {
               console.error(error);
@@ -119,7 +127,9 @@ export default function HomePage() {
               const updateddislikes = alreadydisliked
                 ? v.dislikes.filter((id) => id.toString() !== userId)
                 : [...v.dislikes, userId];
-              const updatedlikes = v.likes.filter((id) => id.toString() !== userId);
+              const updatedlikes = v.likes.filter(
+                (id) => id.toString() !== userId
+              );
 
               return {
                 ...v,
@@ -131,12 +141,20 @@ export default function HomePage() {
             setVideos(updated as any);
 
             try {
+              if (!session) {
+                router.push("/login");
+                return;
+              }
               await apiClient.likeVideo(String(video._id), "dislike");
             } catch (error) {
               console.error(error);
             }
           }}
           onComment={async () => {
+            if (!session) {
+              router.push("/login");
+            }
+
             setActiveVideoId(video._id);
             setActiveVideo(video);
             setShowComment(true);
@@ -156,10 +174,10 @@ export default function HomePage() {
       {showComment && (
         <CommentCard
           item={activeVideo as IVideo}
-          type ="video"
+          type="video"
           updateItem={(item) => setActiveVideo(item as IVideo)}
           setShowComment={setShowComment}
-          updateFeed={(item)=>setVideos}
+          updateFeed={(item) => setVideos}
           showComment={showComment}
         />
       )}

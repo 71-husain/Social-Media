@@ -46,7 +46,7 @@ function Login() {
     }
   }
   return (
-    <div className="grid col-1 min-h-screen bg-gray-900">
+    <div className="grid col-1 min-h-screen bg-gray-900 lg:max-w-[430px] lg:ml-80">
       <div className="bg-blue-700 flex flex-col items-center justify-around  space-y-6">
         <div className="flex flex-col items-center justify-center pt-10 pb-4">
           <div className="bg-white rounded-full p-4 shadow-lg">

@@ -48,7 +48,7 @@ function Register() {
           }
     }
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-900">
+    <div className="flex justify-center items-center min-h-screen bg-gray-900 lg:max-w-[430px] lg:ml-80">
       <form
         className="bg-gray-800 p-6 rounded-lg shadow-lg w-96 space-y-4"
         onSubmit={handleRegister}

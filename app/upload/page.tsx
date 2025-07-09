@@ -128,7 +128,7 @@ export default function UploadPage() {
   };
 
   return (
-    <div className="p-6">
+    <div className="p-6 lg:max-w-[430px] lg:ml-80">
       <h1 className="text-2xl font-bold">Upload Video</h1>
 
       <input
