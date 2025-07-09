@@ -31,7 +31,7 @@ home page
 
 <img width="164" alt="image" src="https://github.com/user-attachments/assets/e99c65f6-5a63-46a7-ac25-7188095043d4" />
 
-reeks section 
+reels section 
 
 <img width="167" alt="image" src="https://github.com/user-attachments/assets/28b08c57-9b4b-4fed-91c1-09d1cbab54cf" />
 
